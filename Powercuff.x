@@ -87,13 +87,13 @@ static void LoadSettings(void)
 	CFPropertyListRef powerMode = CFPreferencesCopyValue(CFSTR("PowerMode"), CFSTR("com.rpetrich.powercuff"), kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
 	uint64_t thermalMode = 0;
 	if (powerMode) {
-		if ([(id)powerMode isKindOfClass:[NSNumber class]]) {
-			thermalMode = (uint64_t)[(NSNumber *)powerMode unsignedLongLongValue];
+		if ([(__bridge id)powerMode isKindOfClass:[NSNumber class]]) {
+			thermalMode = (uint64_t)[(__bridge NSNumber *)powerMode unsignedLongLongValue];
 		}
 		CFRelease(powerMode);
 	}
 	CFPropertyListRef requireLowPowerMode = CFPreferencesCopyValue(CFSTR("RequireLowPowerMode"), CFSTR("com.rpetrich.powercuff"), kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-	if (requireLowPowerMode && [(id)requireLowPowerMode isKindOfClass:[NSNumber class]] && [(id)requireLowPowerMode boolValue]) {
+	if (requireLowPowerMode && [(__bridge id)requireLowPowerMode isKindOfClass:[NSNumber class]] && [(__bridge id)requireLowPowerMode boolValue]) {
 		if ([[%c(_CDBatterySaver) batterySaver] getPowerMode] == 0) {
 			thermalMode = 0;
 		}
