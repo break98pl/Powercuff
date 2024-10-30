@@ -7,9 +7,6 @@
 @end
 @implementation Powercuff
 
-static NSString *const settingsChanged = @"com.rpetrich.powercuff.settingschanged";
-static NSString *const powercuffSettingsPath = @"/var/mobile/Library/Preferences/com.rpetrich.powercuff.plist";
-
 #pragma mark - Non-CAML approach
 
 // Icon of your module
@@ -41,6 +38,8 @@ static NSString *const powercuffSettingsPath = @"/var/mobile/Library/Preferences
 }
 
 - (void)setSelected:(BOOL)selected {
+    NSString *const settingsChanged = @"com.rpetrich.powercuff.settingschanged";
+    NSString *const powercuffSettingsPath = @"/var/mobile/Library/Preferences/com.rpetrich.powercuff.plist";
     if (selected) {
         [[NSUserDefaults standardUserDefaults] setObject:@3 forKey:@"PowerMode" inDomain:powercuffSettingsPath];
         [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:@"RequireLowPowerMode" inDomain:powercuffSettingsPath];
